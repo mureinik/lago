@@ -824,3 +824,28 @@ class Prefix(object):
         if self._virt_env is None:
             self._virt_env = self._create_virt_env()
         return self._virt_env
+
+    @log_task('Collect artifacts')
+    def collect_artifacts(self, output_dir):
+        """
+        Collects artifacts from all the vms in the prefix
+
+        Args:
+            output_dir(str): Path to the directory to put the artifacts on,
+                will be created if it does not exist
+
+        Returns:
+            None
+        """
+        os.makedirs(output_dir)
+
+        def _collect_artifacts(vm):
+            with LogTask('%s' % vm.name()):
+                path = os.path.join(output_dir, vm.name())
+                os.makedirs(path)
+                vm.collect_artifacts(path)
+
+        utils.invoke_in_parallel(
+            _collect_artifacts,
+            self.virt_env.get_vms().values(),
+        )

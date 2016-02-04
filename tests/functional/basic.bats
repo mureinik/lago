@@ -13,6 +13,7 @@ VERBS=(
     stop
     template-repo
     console
+    collect
 )
 FIXTURES="$BATS_TEST_DIRNAME/fixtures/basic"
 

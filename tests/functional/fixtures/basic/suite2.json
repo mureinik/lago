@@ -7,6 +7,10 @@
                     "net": "lago_functional_tests"
                 }
             ],
+            "artifacts": [
+                "/var/log",
+                "/etc/shadow"
+            ],
             "disks": [
                 {
                     "template_name": "lago_functional_tests",
@@ -23,6 +27,10 @@
                 {
                     "net": "lago_functional_tests"
                 }
+            ],
+            "artifacts": [
+                "/var/log",
+                "/etc/passwd"
             ],
             "disks": [
                 {
